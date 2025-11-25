@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>This is Jme Portfolio</title>
+  <title>My Web Developer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -238,63 +238,129 @@
       line-height: 1.7;
       font-size: 1.05rem;
     }
-    .skills-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
+    .skills-strip {
+      margin-bottom: 60px;
+      border-radius: 24px;
+      padding: 36px clamp(24px, 5vw, 72px);
+      background: linear-gradient(120deg, #050505, #111521);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 20px 40px rgba(5,8,30,0.6);
     }
-    .skills-chips span {
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(79,70,229,0.12);
-      font-size: 0.9rem;
+    body.theme-light .skills-strip {
+      background: linear-gradient(120deg, #ffffff, #e8ecff);
+      border-color: rgba(15,23,42,0.08);
+      box-shadow: 0 25px 45px rgba(15,23,42,0.1);
     }
-    body.theme-light .skills-chips span {
-      border-color: rgba(15,23,42,0.1);
-      background: rgba(99,102,241,0.15);
+    .skills-strip h2 {
+      margin-bottom: 18px;
     }
-    .projects-grid {
+    .skills-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-top: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+      text-align: center;
     }
-    .project-card {
-      padding: 24px;
+    .skill-item {
+      padding: 18px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-height: 120px;
+    }
+    .skill-icon {
+      width: 52px;
+      height: 52px;
       border-radius: 16px;
-      background: rgba(15,23,42,0.8);
-      border: 1px solid rgba(79,70,229,0.25);
-      transition: transform 0.25s ease, border 0.25s ease;
-      min-height: 190px;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    body.theme-light .project-card {
-      background: rgba(255,255,255,0.95);
-      border-color: rgba(67,56,202,0.25);
-      box-shadow: 0 15px 35px rgba(15,23,42,0.08);
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent-light);
-    }
-    .project-card.reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .project-card h3 {
-      margin: 0 0 12px;
-      font-size: 1.25rem;
-      font-family: "Sora", "Space Grotesk", sans-serif;
+      background: rgba(79,70,229,0.15);
+      display: grid;
+      place-items: center;
       font-weight: 600;
+      font-size: 1.1rem;
     }
-    .project-card p {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.95rem;
+    .skill-label {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    body.theme-light .skill-item {
+      background: rgba(99,102,241,0.12);
+      border-color: rgba(67,56,202,0.2);
+    }
+    body.theme-light .skill-icon {
+      background: rgba(67,56,202,0.2);
+      color: #1f1f33;
+    }
+    .projects-showcase {
+      margin-bottom: 60px;
+      border-radius: 28px;
+      padding: clamp(32px, 6vw, 70px);
+      background: radial-gradient(circle at top right, rgba(79,70,229,0.35), transparent 50%), linear-gradient(140deg, #090f2a, #121840 65%, #05060f);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 60px rgba(8,12,40,0.55);
+    }
+    body.theme-light .projects-showcase {
+      background: linear-gradient(140deg, #f7f8ff, #e0e7ff);
+      border-color: rgba(15,23,42,0.07);
+      box-shadow: 0 30px 60px rgba(15,23,42,0.15);
+    }
+    .projects-heading {
+      max-width: 460px;
+    }
+    .projects-heading .eyebrow {
+      margin-bottom: 10px;
+    }
+    .projects-gallery {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .project-feature {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      background: rgba(15,23,42,0.75);
+      min-height: 320px;
+    }
+    .project-image {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      min-height: 200px;
+      position: relative;
+    }
+    .project-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(3,7,18,0.8));
+    }
+    .project-body {
+      padding: 24px;
+    }
+    .project-body h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+    .project-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .project-tags span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(79,70,229,0.2);
+      border: 1px solid rgba(255,255,255,0.08);
     }
     .project-link {
       display: inline-block;
@@ -396,7 +462,7 @@
       <p>Front-end developer crafting intuitive, user-centered interfaces and performant web apps. I blend Information Systems discipline with a love for sleek visuals.</p>
       <div class="cta-group">
         <button class="btn primary" id="view-projects">View Projects</button>
-        <a class="btn ghost" href="https://drive.google.com" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn ghost" href="assets/Updated CV Limbo (4).pdf" download>Download CV</a>
       </div>
     </div>
   </header>
@@ -517,4 +583,3 @@
   </script>
 </body>
 </html>
-
