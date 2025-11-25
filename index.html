@@ -195,9 +195,9 @@
       transform: translateY(-2px);
     }
     main {
-      max-width: 1100px;
-      margin: -80px auto 0;
-      padding: 0 24px 60px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
       position: relative;
       z-index: 1;
     }
@@ -238,24 +238,60 @@
       line-height: 1.7;
       font-size: 1.05rem;
     }
-    .skills-strip {
-      margin-bottom: 60px;
-      border-radius: 24px;
-      padding: 36px clamp(24px, 5vw, 72px);
-      background: linear-gradient(120deg, #050505, #111521);
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 20px 40px rgba(5,8,30,0.6);
+    .section-block {
+      margin: 0;
+      border-radius: 0;
+      padding: clamp(52px, 8vw, 120px) clamp(24px, 6vw, 90px);
+      position: relative;
       opacity: 0;
-      transform: translateY(35px);
+      transform: translateY(40px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    body.theme-light .skills-strip {
-      background: linear-gradient(120deg, #ffffff, #e8ecff);
-      border-color: rgba(15,23,42,0.08);
-      box-shadow: 0 25px 45px rgba(15,23,42,0.1);
+    .section-block.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .skills-strip h2 {
+    body.theme-light .section-block {
+      box-shadow: none;
+    }
+    .section-skills {
+      background: linear-gradient(130deg, rgba(5,8,30,0.95), rgba(12,23,52,0.9)), url("https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1300&q=80") center/cover;
+    }
+    body.theme-light .section-skills {
+      background: linear-gradient(130deg, rgba(255,255,255,0.92), rgba(234,240,255,0.95)), url("https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1300&q=80") center/cover;
+      color: #0f172a;
+    }
+    .section-projects {
+      background: linear-gradient(125deg, rgba(8,12,40,0.96), rgba(24,6,42,0.92)), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1300&q=80") center/cover;
+    }
+    body.theme-light .section-projects {
+      background: linear-gradient(125deg, rgba(248,249,255,0.95), rgba(230,231,255,0.92)), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1300&q=80") center/cover;
+      color: #0f172a;
+    }
+    .section-contact {
+      background: linear-gradient(140deg, rgba(4,5,15,0.95), rgba(10,16,38,0.9)), url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1300&q=80") center/cover;
+    }
+    body.theme-light .section-contact {
+      background: linear-gradient(140deg, rgba(255,255,255,0.95), rgba(233,238,255,0.9)), url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1300&q=80") center/cover;
+      color: #0f172a;
+    }
+    .section-skills h2,
+    .section-projects h2,
+    .section-contact h2 {
       margin-bottom: 18px;
+    }
+    .section-core {
+      width: min(720px, 100%);
+      margin-left: clamp(24px, 6vw, 80px);
+      margin-right: auto;
+      text-align: left;
+    }
+    .section-core.wide {
+      width: min(1100px, 100%);
+    }
+    .section-block h2,
+    .section-block p {
+      text-align: left;
     }
     .skills-row {
       display: grid;
@@ -295,22 +331,6 @@
     body.theme-light .skill-icon {
       background: rgba(67,56,202,0.2);
       color: #1f1f33;
-    }
-    .projects-showcase {
-      margin-bottom: 60px;
-      border-radius: 28px;
-      padding: clamp(32px, 6vw, 70px);
-      background: radial-gradient(circle at top right, rgba(79,70,229,0.35), transparent 50%), linear-gradient(140deg, #090f2a, #121840 65%, #05060f);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 30px 60px rgba(8,12,40,0.55);
-      opacity: 0;
-      transform: translateY(35px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    body.theme-light .projects-showcase {
-      background: linear-gradient(140deg, #f7f8ff, #e0e7ff);
-      border-color: rgba(15,23,42,0.07);
-      box-shadow: 0 30px 60px rgba(15,23,42,0.15);
     }
     .projects-heading {
       max-width: 460px;
@@ -378,8 +398,6 @@
       text-decoration: none;
       font-weight: 500;
     }
-    .skills-strip.reveal,
-    .projects-showcase.reveal,
     .project-feature.reveal {
       opacity: 1;
       transform: translateY(0);
@@ -392,17 +410,19 @@
     }
     .contact-info div {
       flex: 1 1 260px;
-      padding: 18px;
-      border-radius: 14px;
-      background: rgba(15,23,42,0.7);
-      border: 1px solid rgba(255,255,255,0.06);
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(4,7,25,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 15px 35px rgba(3,7,18,0.45);
+      backdrop-filter: blur(12px);
       opacity: 0;
       transform: translateY(30px);
     }
     body.theme-light .contact-info div {
-      background: rgba(255,255,255,0.9);
-      border-color: rgba(15,23,42,0.08);
-      box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+      background: rgba(255,255,255,0.82);
+      border-color: rgba(15,23,42,0.12);
+      box-shadow: 0 18px 35px rgba(15,23,42,0.12);
     }
     .contact-info div.reveal {
       opacity: 1;
@@ -474,7 +494,7 @@
     <div class="hero-content">
       <span class="eyebrow">Hello!</span>
       <h1>I’m <span>John Mars Emmanuel Limbo</span></h1>
-      <p>Front-end developer crafting intuitive, user-centered interfaces and performant web apps. I blend Information Systems discipline with a love for sleek visuals.</p>
+      <p>Front-end developer crafting intuitive, user-centered interfaces and performant web apps. Hello! I'm John Mars Emmanuel Limbo, a Bachelor of Science in Information Systems graduate who enjoys building clean, responsive, and user-friendly websites with experience across HTML, CSS, JavaScript, PHP, and basic Python.</p>
       <div class="cta-group">
         <button class="btn primary" id="view-projects">View Projects</button>
         <a class="btn ghost" href="Limbo.pdf" download>Download CV</a>
@@ -483,105 +503,106 @@
   </header>
 
   <main>
-    <section class="about card" id="about">
-      <h2>About Me</h2>
-      <p>Hello! I'm John Mars Emmanuel Limbo, a Bachelor of Science in Information Systems graduate. I enjoy building clean, responsive, and user-friendly websites, and I have experience in HTML, CSS, JavaScript, PHP, and basic Python.</p>
-    </section>
-
-    <section class="skills-strip" id="skills">
-      <h2>Skills & Tools</h2>
-      <p>A stack that balances interface polish with reliable back-end workflows.</p>
-      <div class="skills-row">
-        <div class="skill-item">
-          <div class="skill-icon">⚛️</div>
-          <div class="skill-label">React.js</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">⛵</div>
-          <div class="skill-label">Tailwind CSS</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">B</div>
-          <div class="skill-label">Bootstrap</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">5</div>
-          <div class="skill-label">HTML5</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">PHP</div>
-          <div class="skill-label">Raw PHP</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon">SQL</div>
-          <div class="skill-label">MySQL</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="projects-showcase" id="projects">
-      <div class="projects-heading">
-        <span class="eyebrow">My Projects</span>
-        <h2>From student services to polished websites</h2>
-        <p>A showcase of my development journey — modern front-end builds, automated systems, and data-backed dashboards for stakeholders.</p>
-      </div>
-      <div class="projects-gallery">
-        <article class="project-feature">
-          <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span>Raw PHP</span>
-              <span>Capstone</span>
-            </div>
-            <h3>Office of Student Affairs Management Information System</h3>
-            <p>End-to-end platform for managing proposals, processing times, and automated notifications, improving transparency across student organizations.</p>
-            <a class="project-link" href="https://github.com/jmepogi/Capstone_Project" target="_blank" rel="noopener">View on GitHub →</a>
+    <div class="section-block section-skills" id="skills" role="region" aria-labelledby="skills-title">
+      <div class="section-core">
+        <h2 id="skills-title">Skills & Tools</h2>
+        <p>A stack that balances interface polish with reliable back-end workflows.</p>
+        <div class="skills-row">
+          <div class="skill-item">
+            <div class="skill-icon">⚛️</div>
+            <div class="skill-label">React.js</div>
           </div>
-        </article>
-        <article class="project-feature">
-          <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span>React</span>
-              <span>Tailwind</span>
-            </div>
-            <h3>Campus Events Portal</h3>
-            <p>A responsive events microsite that showcases schedules, RSVP modules, and highlight reels, built for fast edits and mobile visitors.</p>
-            <a class="project-link" href="https://github.com" target="_blank" rel="noopener">Explore repo →</a>
+          <div class="skill-item">
+            <div class="skill-icon">⛵</div>
+            <div class="skill-label">Tailwind CSS</div>
           </div>
-        </article>
-        <article class="project-feature">
-          <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1518084823714-4c7edcad34c4?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span>Bootstrap</span>
-              <span>UX</span>
-            </div>
-            <h3>Portfolio Builder</h3>
-            <p>Modular portfolio templates and CMS-like controls so I can spin up branded sites for clients without rebuilding layouts from scratch.</p>
-            <a class="project-link" href="https://github.com" target="_blank" rel="noopener">View case study →</a>
+          <div class="skill-item">
+            <div class="skill-icon">B</div>
+            <div class="skill-label">Bootstrap</div>
           </div>
-        </article>
+          <div class="skill-item">
+            <div class="skill-icon">5</div>
+            <div class="skill-label">HTML5</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">PHP</div>
+            <div class="skill-label">Raw PHP</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">SQL</div>
+            <div class="skill-label">MySQL</div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section class="contact card" id="contact">
-      <h2>Contact Me</h2>
-      <div class="contact-info">
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">jme2435@gmail.com</div>
+    <div class="section-block section-projects" id="projects" role="region" aria-labelledby="projects-title">
+      <div class="section-core wide">
+        <div class="projects-heading">
+          <span class="eyebrow">My Projects</span>
+          <h2 id="projects-title">From student services to polished websites</h2>
+          <p>A showcase of my development journey — modern front-end builds, automated systems, and data-backed dashboards for stakeholders.</p>
         </div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">linkedin.com/in/yourprofile</div>
-        </div>
-        <div>
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value">https://github.com/Jmepogi</div>
+        <div class="projects-gallery">
+          <article class="project-feature">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span>Raw PHP</span>
+                <span>Capstone</span>
+              </div>
+              <h3>Office of Student Affairs Management Information System</h3>
+              <p>End-to-end platform for managing proposals, processing times, and automated notifications, improving transparency across student organizations.</p>
+              <a class="project-link" href="https://github.com/jmepogi/Capstone_Project" target="_blank" rel="noopener">View on GitHub →</a>
+            </div>
+          </article>
+          <article class="project-feature">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span>React</span>
+                <span>Tailwind</span>
+              </div>
+              <h3>Campus Events Portal</h3>
+              <p>A responsive events microsite that showcases schedules, RSVP modules, and highlight reels, built for fast edits and mobile visitors.</p>
+              <a class="project-link" href="https://github.com" target="_blank" rel="noopener">Explore repo →</a>
+            </div>
+          </article>
+          <article class="project-feature">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1518084823714-4c7edcad34c4?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span>Bootstrap</span>
+                <span>UX</span>
+              </div>
+              <h3>Portfolio Builder</h3>
+              <p>Modular portfolio templates and CMS-like controls so I can spin up branded sites for clients without rebuilding layouts from scratch.</p>
+              <a class="project-link" href="https://github.com" target="_blank" rel="noopener">View case study →</a>
+            </div>
+          </article>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="section-block section-contact contact" id="contact" role="region" aria-labelledby="contact-title">
+      <div class="section-core">
+        <h2 id="contact-title">Contact Me</h2>
+        <div class="contact-info">
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">jme2435@gmail.com</div>
+          </div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">linkedin.com/in/yourprofile</div>
+          </div>
+          <div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">https://github.com/Jmepogi</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -618,7 +639,7 @@
       });
 
       projectsBtn.addEventListener("click", () => {
-        document.querySelector(".projects").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
       });
 
       const observer = new IntersectionObserver(
@@ -634,11 +655,10 @@
       );
 
       document
-        .querySelectorAll(".card, .skills-strip, .projects-showcase, .project-feature, .contact-info div")
+        .querySelectorAll(".card, .section-block, .project-feature, .contact-info div")
         .forEach((el) => observer.observe(el));
     })();
   </script>
 </body>
 </html>
-
 
