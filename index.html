@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Web Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #131c34;
+      --accent: #4f46e5;
+      --accent-light: #a5b4fc;
+      --text: #f3f4f6;
+      --muted: #94a3b8;
+    }
+    body.theme-light {
+      --bg: #eef2ff;
+      --card: #ffffff;
+      --accent: #4338ca;
+      --accent-light: #6366f1;
+      --text: #111827;
+      --muted: #4b5563;
+      background: linear-gradient(135deg, #eef2ff, #e0e7ff 45%, #f5f3ff);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f172a, #1e1b4b 45%, #0b1120);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 70px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(79,70,229,0.35), transparent 55%);
+      z-index: 0;
+    }
+    header .content {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      letter-spacing: 1px;
+    }
+    header p {
+      margin: 18px auto 0;
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+    .cta-group {
+      margin-top: 35px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 30px rgba(79,70,229,0.35);
+    }
+    .btn.secondary {
+      background: rgba(148,163,184,0.15);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    body.theme-light .btn.secondary {
+      background: rgba(67,56,202,0.08);
+      border-color: rgba(67,56,202,0.2);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .card {
+      background: rgba(19,28,52,0.9);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 45px rgba(15,23,42,0.45);
+      backdrop-filter: blur(10px);
+      margin-top: -60px;
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    body.theme-light .card {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 25px 50px rgba(15,23,42,0.08);
+    }
+    .card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+    }
+    .about p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 25px;
+    }
+    .project-card {
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(79,70,229,0.25);
+      transition: transform 0.25s ease, border 0.25s ease;
+      min-height: 190px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    body.theme-light .project-card {
+      background: rgba(255,255,255,0.95);
+      border-color: rgba(67,56,202,0.25);
+      box-shadow: 0 15px 35px rgba(15,23,42,0.08);
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-light);
+    }
+    .project-card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .project-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .contact-info div {
+      flex: 1 1 260px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    body.theme-light .contact-info div {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(15,23,42,0.08);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+    }
+    .contact-info div.reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .contact-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+    }
+    .contact-value {
+      margin-top: 6px;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px 50px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      .card {
+        padding: 24px;
+      }
+      .cta-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="content">
+      <h1>John Mars Emmanuel Limbo</h1>
+      <p>Web Developer crafting clean, responsive experiences with a touch of personality. Information Systems graduate with a love for performant web apps.</p>
+      <div class="cta-group">
+        <button class="btn primary" id="view-projects">View Projects</button>
+        <button class="btn secondary">Download CV</button>
+        <button class="btn secondary" id="theme-toggle">Switch Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="about card">
+    <h2>About Me</h2>
+    <p>Hello! I'm John Mars Emmanuel Limbo, a Bachelor of Science in Information Systems graduate. I enjoy building clean, responsive, and user-friendly websites, and I have experience in HTML, CSS, JavaScript, PHP, and basic Python.</p>
+  </section>
+
+  <section class="projects card">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Project Title 1</h3>
+        <p>Short description of what this project is about, tools used, and features.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project Title 2</h3>
+        <p>Short description for another project. This can include websites, systems, or apps you've made.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project Title 3</h3>
+        <p>A quick highlight about another project showcasing your experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact card">
+    <h2>Contact Me</h2>
+    <div class="contact-info">
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">jme2435@gmail.com</div>
+      </div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">linkedin.com/in/yourprofile</div>
+      </div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/yourusername</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Your Name. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const toggleBtn = document.getElementById("theme-toggle");
+      const projectsBtn = document.getElementById("view-projects");
+      const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      const savedTheme = localStorage.getItem("theme");
+
+      const applyTheme = (mode) => {
+        if (mode === "light") {
+          body.classList.add("theme-light");
+          toggleBtn.textContent = "Switch Theme";
+        } else {
+          body.classList.remove("theme-light");
+          toggleBtn.textContent = "Switch Theme";
+        }
+        toggleBtn.textContent = body.classList.contains("theme-light") ? "Dark Mode" : "Light Mode";
+      };
+
+      applyTheme(savedTheme || (prefersLight ? "light" : "dark"));
+
+      toggleBtn.addEventListener("click", () => {
+        const isLight = body.classList.toggle("theme-light");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+        toggleBtn.textContent = isLight ? "Dark Mode" : "Light Mode";
+      });
+
+      projectsBtn.addEventListener("click", () => {
+        document.querySelector(".projects").scrollIntoView({ behavior: "smooth" });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll(".card, .project-card, .contact-info div").forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
