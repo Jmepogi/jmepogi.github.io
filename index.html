@@ -60,7 +60,25 @@
     }
     body.theme-light .hero {
       background: linear-gradient(120deg, rgba(255,255,255,0.85), rgba(224,231,255,0.9)), url("https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1400&q=80") center/cover;
-      color: #0f172a;
+      color: #000000;
+    }
+    body.theme-light .hero p {
+      color: #000000;
+    }
+    body.theme-light .hero h1 {
+      color: #000000;
+    }
+    body.theme-light .hero h1 span {
+      color: var(--accent);
+    }
+    body.theme-light .hero .eyebrow {
+      color: var(--accent);
+    }
+    body.theme-light .hero .nav-links a {
+      color: #000000;
+    }
+    body.theme-light .hero .brand {
+      color: #000000;
     }
     .navbar {
       display: flex;
@@ -408,7 +426,7 @@
       gap: 16px;
       margin-top: 20px;
     }
-    .contact-info div {
+    .contact-card-link {
       flex: 1 1 260px;
       padding: 20px;
       border-radius: 18px;
@@ -418,13 +436,29 @@
       backdrop-filter: blur(12px);
       opacity: 0;
       transform: translateY(30px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
-    body.theme-light .contact-info div {
+    .contact-card-link:hover {
+      cursor: pointer;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(3,7,18,0.6);
+      border-color: rgba(79,70,229,0.4);
+      text-decoration: none;
+      color: inherit;
+    }
+    body.theme-light .contact-card-link {
       background: rgba(255,255,255,0.82);
       border-color: rgba(15,23,42,0.12);
       box-shadow: 0 18px 35px rgba(15,23,42,0.12);
     }
-    .contact-info div.reveal {
+    body.theme-light .contact-card-link:hover {
+      border-color: rgba(67,56,202,0.4);
+      box-shadow: 0 25px 50px rgba(15,23,42,0.2);
+    }
+    .contact-card-link.reveal {
       opacity: 1;
       transform: translateY(0);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -632,11 +666,10 @@
       );
 
       document
-        .querySelectorAll(".card, .section-block, .project-feature, .contact-info div")
+        .querySelectorAll(".card, .section-block, .project-feature, .contact-card-link")
         .forEach((el) => observer.observe(el));
     })();
   </script>
 </body>
 </html>
-
 
